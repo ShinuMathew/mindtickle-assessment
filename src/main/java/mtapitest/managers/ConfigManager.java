@@ -18,6 +18,13 @@ import mtapitest.framework.MTTestFramework;
 import mtapitest.objects.config.Endpoint;
 import mtapitest.objects.config.ServiceConfig;
 
+/***
+ * Deals with operations on config.xml. Serializing, deserializing and parsing
+ * config for test run
+ * 
+ * @author shinumathew
+ *
+ */
 public class ConfigManager extends MTTestFramework {
 
 	public XMLDocumentParser xmlDocumentParser;
@@ -27,6 +34,12 @@ public class ConfigManager extends MTTestFramework {
 		this.xmlDocumentParser = new XMLDocumentParser(Paths.get(MTConstants.CONFIG_PATH).toString());
 	}
 
+	/***
+	 * Loads service config from config.xml.
+	 * 
+	 * @return List of ServiceConfig
+	 * @throws Exception
+	 */
 	public List<ServiceConfig> loadServicesFromConfig() throws Exception {
 		this.serviceNode = this.xmlDocumentParser.getNode(MTConstants.CONFIG_SERVICE);
 		List<ServiceConfig> serviceConfigs = new ArrayList<ServiceConfig>();
@@ -41,7 +54,8 @@ public class ConfigManager extends MTTestFramework {
 					if (endpointNodes.item(j).getNodeType() == Node.ELEMENT_NODE) {
 						endpoints.add(Endpoint.builder()
 								.name(MTServiceEndpoint.valueOf(endpointNodes.item(j).getNodeName().toUpperCase()))
-								.method(Method.valueOf(endpointNodes.item(j).getAttributes().getNamedItem("method").getTextContent().toUpperCase()))
+								.method(Method.valueOf(endpointNodes.item(j).getAttributes().getNamedItem("method")
+										.getTextContent().toUpperCase()))
 								.path(this.xmlDocumentParser.getSpecificChildNode(endpointNodes.item(j), "path")
 										.getTextContent())
 								.isDefaultHeader(Boolean.parseBoolean(
@@ -62,13 +76,21 @@ public class ConfigManager extends MTTestFramework {
 		return serviceConfigs;
 	}
 
-	public Endpoint getServiceEndpoint(ServiceConfig serviceConfig, MTServiceEndpoint endpoint) throws Exception {
-		return serviceConfig.getEndpoints().stream().filter(ep -> ep.getName().equals(endpoint))
-				.collect(Collectors.toList()).get(0);
-	}
 
 	public ServiceConfig getServiceConfig(List<ServiceConfig> serviceConfigs, MTService service) throws Exception {
-		return serviceConfigs.stream().filter(config -> config.getName().equals(service))
+		return serviceConfigs.stream().filter(config -> config.getName().equals(service)).collect(Collectors.toList())
+				.get(0);
+	}
+	
+	/***
+	 * 
+	 * @param serviceConfig
+	 * @param endpoint
+	 * @return
+	 * @throws Exception
+	 */
+	public Endpoint getServiceEndpoint(ServiceConfig serviceConfig, MTServiceEndpoint endpoint) throws Exception {
+		return serviceConfig.getEndpoints().stream().filter(ep -> ep.getName().equals(endpoint))
 				.collect(Collectors.toList()).get(0);
 	}
 }

@@ -5,6 +5,8 @@
 		<classes>
 			<!-- <class name="com.apitest.bot.tests.BaseTest"/> -->
 			<class name="mtapitest.unittests.ConfigTest" />			
+			<class name="mtapitest.unittests.DataProviderTest" />			
+			<class name="mtapitest.unittests.UtilsTest" />			
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

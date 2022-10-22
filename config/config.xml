@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+	<service>
+		<user>
+			<host>petstore.swagger.io</host>
+			<protocol>https</protocol>
+			<endpoint>
+				<createuser method="POST">
+					<path>/v2/user/createWithArray</path>
+					<headers default="true"></headers>
+				</createuser>
+				<getuser method="GET">
+					<path>/v2/user/%s</path>
+					<headers default="true"></headers>
+				</getuser>
+				<updateuser method="PUT">
+					<path>/v2/user/%s</path>
+					<headers default="true"></headers>
+				</updateuser>
+			</endpoint>
+		</user>
+		<pet>
+			<host>petstore.swagger.io</host>
+			<protocol>https</protocol>
+			<endpoint>
+				<createpet method="POST">
+					<path>/v2/pet</path>
+					<headers default="true"></headers>
+				</createpet>
+				<getpetbystatus method="GET">
+					<path>/v2/pet/findByStatus</path>
+					<headers default="true"></headers>
+				</getpetbystatus>
+				<updatepet method="PUT">
+					<path>/v2/pet</path>
+					<headers default="true"></headers>
+				</updatepet>
+			</endpoint>
+		</pet>
+	</service>
+</configs>

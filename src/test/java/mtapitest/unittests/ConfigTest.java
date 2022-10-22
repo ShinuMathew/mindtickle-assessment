@@ -42,7 +42,7 @@ public class ConfigTest {
 	private void getServiceEndpoint() throws Exception {
 		Endpoint createUserEndpoint = this.configManager.getServiceEndpoint(userServiceConfig, MTServiceEndpoint.CREATEUSER);
 		Assert.assertNotNull(createUserEndpoint);
-		Assert.assertEquals(createUserEndpoint.getMethod(), Method.POST);
+		Assert.assertEquals(createUserEndpoint.getMethod(), Method.GET);
 	}
 
 }

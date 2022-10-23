@@ -9,6 +9,12 @@ import org.testng.annotations.ITestAnnotation;
 
 import mtapitest.framework.MTTestFramework;
 
+/***
+ * Annotation transformer implementation for executing only selected test cases
+ * 
+ * @author shinumathew
+ *
+ */
 public class TestTransformerListener extends MTTestFramework implements IAnnotationTransformer {
 
 	public TestTransformerListener() {
@@ -25,5 +31,4 @@ public class TestTransformerListener extends MTTestFramework implements IAnnotat
 				annotation.setEnabled(false);
 		}
 	}
-
 }

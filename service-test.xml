@@ -5,11 +5,15 @@
 		<listener
 			class-name="mtapitest.listeners.TestTransformerListener"></listener>
 	</listeners>
-	<test thread-count="5" name="Test">
+	<test name="Test">
 		<classes>
-			<!-- <class name="com.apitest.bot.tests.BaseTest"/> -->
-			<class name="mtapitest.tests.PetTests" />
-			<class name="mtapitest.tests.UserTests" />
+			<!-- USER SCENARIOS -->			
+			<class name="mtapitest.tests.user.UserHappyPathTests" />
+			<class name="mtapitest.tests.user.UserNegativeTests" />
+			
+			<!-- PET SCENARIOS -->
+			<class name="mtapitest.tests.pet.PetHappypathTests" />
+			<class name="mtapitest.tests.pet.PetNegativeTests" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

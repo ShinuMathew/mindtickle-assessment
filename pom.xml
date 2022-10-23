@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mindtickle.assessment</groupId>
 	<artifactId>mtapitest</artifactId>
@@ -84,7 +85,6 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.4.4</version>
-			<scope>test</scope>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
@@ -158,6 +158,11 @@
 			<artifactId>allure-testng</artifactId>
 			<version>2.17.3</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>4.1.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -180,9 +185,10 @@
 				<version>3.0.0-M1</version>
 				<configuration>
 					<argLine> -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-    </argLine>
+					</argLine>
 					<suiteXmlFiles>
-						<suiteXmlFile>testng_jenkins.xml</suiteXmlFile>
+						<!-- pass testng.xml files as argument from command line -->
+						<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 
@@ -193,6 +199,26 @@
 						<version>${aspectj.version}</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.5</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

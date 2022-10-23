@@ -14,7 +14,7 @@ public class CommonUtils {
 	}
 
 	public int generateRandomId(int length) {
-		return (int) Math.ceil(Math.random() * Math.pow(10, length));
+		return (int) (Math.pow(10, length) + Math.ceil(Math.random() * Math.pow(10, length)));
 	}
 
 	public String generateRandomName(String prefix) {

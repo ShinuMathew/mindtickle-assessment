@@ -32,7 +32,7 @@ import mtapitest.services.UserService;
  * @author shinumathew
  *
  */
-public class CommonTestHelper extends MTTestFramework {
+public class CommonTestHelper extends MTTestFramework implements ITestHelper {
 
 	private static final Logger log = LoggerFactory.getLogger(CommonTestHelper.class);
 
@@ -105,11 +105,23 @@ public class CommonTestHelper extends MTTestFramework {
 		}
 		return userList;
 	}
+	
+	public void validateCreateUserIncorrectSchema() {
+		try {
+			User user = getRandomUser();			
+			String reqBody = this.entityMapper.serializePayload(user);
+			Response response = this.userService.createUserWithArray(reqBody);
+			assertionManager.assertStatusServerError(response.statusCode());			
+		} catch (Exception e) {
+			assertionManager.assertExceptionFailures(e);
+		}
+	}
 
 	public void verifyCreatedUser(User user) {
 		try {
 			log.info("Fetching user profile for user : " + user.getUsername());
-			Response response = this.userService.getUser(user);
+			Response response = this.userService.getUser(user.getUsername());
+			assertionManager.assertStatusSuccess(response.statusCode());
 			assertionManager.assertResponseSchema(response.body().asString(), this.entityMapper.serializePayload(user),
 					JSONCompareMode.STRICT);
 		} catch (Exception e) {
@@ -120,12 +132,50 @@ public class CommonTestHelper extends MTTestFramework {
 	public void verifyCreatedUsers(List<User> users) {
 		users.forEach(this::verifyCreatedUser);
 	}
+	
+	public void fetchAndVerifyInvalidUser() {
+		try {
+			log.info("Fetching user profile for user : ##1234");
+			Response response = this.userService.getUser("##1234");
+			assertionManager.assertStatusNotFound(response.statusCode());
+		} catch (Exception e) {
+			assertionManager.assertExceptionFailures(e);
+		}
+	}
+	
+	public void updateAndVerifyInvalidUser() {
+		try {
+			log.info("Updating profile for user : ##1234");
+			User newUserData = getRandomUser();
+			Response response = this.userService.updateUser("##1234", this.entityMapper.serializePayload(newUserData));
+			assertionManager.assertStatusNotFound(response.statusCode());
+		} catch (Exception e) {
+			assertionManager.assertExceptionFailures(e);
+		}
+	}
 
-	public User updateExistingUser() {
+	public User updateAnyExistingUser() {
 		User newUserData = getRandomUser();
 		;
 		try {
 			User oldUserData = getTemporaryUser();
+			Response response = this.userService.updateUser(oldUserData.getUsername(),
+					this.entityMapper.serializePayload(newUserData));
+			assertionManager.assertStatusSuccess(response.statusCode());
+			MTCommonResponse responseObj = (MTCommonResponse) this.entityMapper
+					.deSerializePayload(response.body().asString(), new MTCommonResponse());
+			assertionManager.assertCommonMTResponse(responseObj.getCode(), 200);
+		} catch (Exception e) {
+			assertionManager.assertExceptionFailures(e);
+		}
+		return newUserData;
+	}
+	
+
+	public User updateExistingUser(User oldUserData) {
+		User newUserData = getRandomUser();		
+		try {
+			newUserData.setUsername(oldUserData.getUsername());
 			Response response = this.userService.updateUser(oldUserData.getUsername(),
 					this.entityMapper.serializePayload(newUserData));
 			assertionManager.assertStatusSuccess(response.statusCode());
@@ -146,7 +196,6 @@ public class CommonTestHelper extends MTTestFramework {
 			ArrayList<String> tempUsers = (ArrayList<String>) InMemoryCache.get(MTConstants.TEMPUSER);
 			if (ObjectUtils.isEmpty(tempUsers)) {
 				log.info("No users found in cache. Creating a temporary user");
-				log.info("Generating random user...");
 				List<User> userList = new ArrayList<User>();
 				user = this.dataProvider.generateRandomUser();
 				userList.add(user);
@@ -165,7 +214,7 @@ public class CommonTestHelper extends MTTestFramework {
 
 	// ---------- PET SERVICE TEST HELPERS ---------- //
 
-	public Pet createNewPet() {
+	public Pet createAndValidateNewPet() {
 		Pet pet = null;
 		try {
 			pet = this.dataProvider.generateRandomPet(PetStatus.AVAILABLE);			
@@ -188,6 +237,18 @@ public class CommonTestHelper extends MTTestFramework {
 		}
 		return response;
 	}
+	
+	public void createAndValidateInvalidPet() {		
+		try {
+			Pet pet = this.dataProvider.generateRandomPet(PetStatus.AVAILABLE);
+			
+			String requestBody = this.entityMapper.serializePayload(pet);
+			Response response = this.petService.createPet(requestBody);
+			assertionManager.assertStatusBadRequest(response.statusCode());
+		} catch (Exception e) {
+			assertionManager.assertExceptionFailures(e);
+		}		
+	}
 
 	public Pet getPetByStatus(Pet expectedPet, PetStatus status) {
 		Pet actualPet = null;
@@ -200,6 +261,17 @@ public class CommonTestHelper extends MTTestFramework {
 			assertionManager.assertExceptionFailures(e);
 		}
 		return actualPet;
+	}
+	
+	public void getPetByInvalidStatus(PetStatus status) {		
+		try {
+			Response response = this.petService.getPet(status.getValue());
+			List<Pet> pets = this.entityMapper.getObjectMapper().readValue(response.body().asString(),
+					new TypeReference<List<Pet>>() { });
+			assertionManager.assertPetEmptyResponse(pets);
+		} catch (Exception e) {
+			assertionManager.assertExceptionFailures(e);
+		}		
 	}
 	
 	public void verifyCreatedPet(Pet expectedPet) {

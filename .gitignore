@@ -5,3 +5,4 @@ allure-results
 test-output
 target/
 .vscode/settings.json
+/logs

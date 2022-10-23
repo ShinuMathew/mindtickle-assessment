@@ -1,6 +1,7 @@
 package mtapitest.managers;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
@@ -51,6 +52,11 @@ public class AssertionManager {
 		Assert.assertEquals(statusCode, HttpStatusCode.NOT_FOUND.getStatusCodeValue());
 		log.info(String.format("Response status code : %s validated successfully", statusCode));
 	}
+	
+	public void assertStatusServerError(int statusCode) {
+		Assert.assertEquals(statusCode, HttpStatusCode.SERVER_ERROR.getStatusCodeValue());
+		log.info(String.format("Response status code : %s validated successfully", statusCode));
+	}
 
 	public void assertCommonMTResponse(int statusCode, int expectedCode) {
 		Assert.assertEquals(statusCode, expectedCode);
@@ -65,6 +71,10 @@ public class AssertionManager {
 		Assert.assertEquals(actualValue.getName(), expectedValue.getName());
 		Assert.assertEquals(actualValue.getStatus(), expectedValue.getStatus());
 		Assert.assertEquals(actualValue.getId(), expectedValue.getId());
+	}
+	
+	public void assertPetEmptyResponse(List<Pet> actualValue) {
+		Assert.assertTrue(actualValue.size() == 0);
 	}
 	
 	public void assertExceptionFailures(Exception ex) {

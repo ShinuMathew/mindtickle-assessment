@@ -25,6 +25,7 @@ public class UtilsTest {
 	@Test
 	private void generateRandomId() {
 		int id = this.commonUtils.generateRandomId(3);
+		System.out.println(id);
 		Assert.assertTrue(id > 1000);
 	}
 }

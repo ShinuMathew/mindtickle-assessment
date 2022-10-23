@@ -1,4 +1,4 @@
-package mtapitest.tests;
+package mtapitest.tests.user;
 
 import java.util.List;
 
@@ -13,32 +13,34 @@ import mtapitest.framework.BaseTest;
 import mtapitest.objects.request.User;
 
 /***
- * @author shinumathew User test cases
+ * @author shinumathew User - Happy path test cases
  */
-@Feature("Users")
-public class UserTests extends BaseTest {
+@Feature("Users - Happy path tests")
+public class UserHappyPathTests extends BaseTest {
+	
+	private User user;
 
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Create single user and validate")
-	@Story("Test Pet CRUD APIs")
+	@Story("Test Users CRUD APIs - Happy path")
 	@Test(enabled = true, priority = 1, description = "US21901")
 	public void createAndValidateSingleUser() {
-		User user = this.commonTestHelper.createAndValidateSingleUser();
-		this.commonTestHelper.verifyCreatedUser(user);
+		this.user = this.commonTestHelper.createAndValidateSingleUser();
+		this.commonTestHelper.verifyCreatedUser(this.user);
 	}
 
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Update user and validate")
-	@Story("Test Pet CRUD APIs")
+	@Story("Test Users CRUD APIs - Happy path")
 	@Test(enabled = true, priority = 2, description = "US21902")
 	public void updateAndValidateUser() {
-		User user = this.commonTestHelper.updateExistingUser();
-		this.commonTestHelper.verifyCreatedUser(user);
+		User newUserData = this.commonTestHelper.updateExistingUser(this.user);
+		this.commonTestHelper.verifyCreatedUser(newUserData);
 	}
 
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Create multiple user and validate")
-	@Story("Test Pet CRUD APIs")
+	@Story("Test Users CRUD APIs - Happy path")
 	@Test(enabled = true, priority = 3, description = "US21903")
 	public void createAndValidateMultipleUser() {
 		List<User> users = this.commonTestHelper.createAndValidateMultipleUser(3);

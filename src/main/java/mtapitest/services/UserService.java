@@ -9,7 +9,6 @@ import com.jayway.restassured.specification.RequestSpecification;
 import mtapitest.enums.mtenums.MTService;
 import mtapitest.enums.mtenums.MTServiceEndpoint;
 import mtapitest.objects.config.Endpoint;
-import mtapitest.objects.request.User;
 
 /***
  * Service class for creating and making User service request
@@ -43,11 +42,11 @@ public class UserService extends Service {
 		return reqBuilder.sendRequest(request);
 	}
 
-	public Response getUser(User user) throws Exception {
+	public Response getUser(String username) throws Exception {
 		log.info("Calling getUser...");
 		Endpoint endpoint = this.configHelper.getServiceEndpoint(this.serviceConfig, MTServiceEndpoint.GETUSER);
 		RequestSpecification request = reqBuilder.builder().setBaseURI(this.protocol + "://" + this.host)
-				.setEndpoint(String.format(endpoint.getPath(), user.getUsername())).setHeaders(defaultHeaders)
+				.setEndpoint(String.format(endpoint.getPath(), username)).setHeaders(defaultHeaders)
 				.setMethod(endpoint.getMethod()).buildRequest();
 		return reqBuilder.sendRequest(request);
 	}

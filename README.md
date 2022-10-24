@@ -7,7 +7,7 @@
 
 ## SETUP
 
-* Clone repo
+* Clone the repo
 * Import into the IDE of your preference and build the project.
 * Setup lombok plugin in your IDE. You can install the plugin from market place in eclipse and Plugins tab in IntelliJ.
 * Install allure node package using npm - `sudo npm i -g allure-commandline`.

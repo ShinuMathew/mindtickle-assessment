@@ -45,7 +45,7 @@ public class ExcelDocumentParser {
 	/***
 	 * Loads the excel sheet based on its sheet name
 	 * @param sheetName
-	 * @return
+	 * @return XSSFSheet containing the expected data
 	 */
 	public XSSFSheet loadSheet(String sheetName) {
 		return this.workbook.getSheet(sheetName);

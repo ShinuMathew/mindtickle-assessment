@@ -57,3 +57,9 @@
 * `src/test/java/mtapitest/tests/user/UserDataDrivenTest.java` contains a data driven test case to test CRUD operations on user endpoints.
 * `src/test/java/mtapitest/tests/pet/PetHappypathTests.java` contains all happy path smoke tests for pet endpoint.
 * `src/test/java/mtapitest/tests/user/PetNegativeTests.java` contains all negative tests for pet endpoint.
+
+## Unit test files :
+* `src/test/java/mtapitest/unittests/ConfigTest.java` contains unit tests for ConfigManager.
+* `src/test/java/mtapitest/unittests/DataDrivenManagerTest.java` contains unit tests for DataDrivenManager.
+* `src/test/java/mtapitest/unittests/DataProviderTest.java` contains unit tests for DataProvider.
+* `src/test/java/mtapitest/unittests/UtilsTest.java` contains unit tests for CommonUtils.

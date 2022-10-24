@@ -12,6 +12,13 @@ import mtapitest.constants.MTConstants;
 import mtapitest.exceptions.MTException;
 import mtapitest.objects.request.User;
 
+/***
+ * Loads data from one or more source(currently an excel file) and provides it
+ * for data driven test
+ * 
+ * @author shinumathew
+ *
+ */
 public class DataDrivenManager {
 
 	private ExcelDocumentParser excelDocParser;

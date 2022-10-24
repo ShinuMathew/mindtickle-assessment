@@ -2,7 +2,6 @@ package mtapitest.clients;
 
 import java.io.FileInputStream;
 import java.nio.file.Paths;
-
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
@@ -11,6 +10,13 @@ import mtapitest.enums.MTErrorCode;
 import mtapitest.exceptions.MTException;
 import mtapitest.tests.helper.CommonTestHelper;
 
+
+/***
+ * Reads, parses and serializes an excel document data to a required object
+ * 
+ * @author shinumathew
+ *
+ */
 public class ExcelDocumentParser {
 
 	private static final Logger log = LoggerFactory.getLogger(CommonTestHelper.class);
@@ -21,6 +27,10 @@ public class ExcelDocumentParser {
 		this.path = path;
 	}
 
+	/***
+	 * Loads a workbook based on the 'path' variable
+	 * @throws MTException
+	 */
 	public void readWorkbook() throws MTException {
 		try {
 			String filePath = Paths.get(this.path).toString();
@@ -32,6 +42,11 @@ public class ExcelDocumentParser {
 		}
 	}
 
+	/***
+	 * Loads the excel sheet based on its sheet name
+	 * @param sheetName
+	 * @return
+	 */
 	public XSSFSheet loadSheet(String sheetName) {
 		return this.workbook.getSheet(sheetName);
 	}

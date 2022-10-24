@@ -12,6 +12,12 @@ import org.w3c.dom.NodeList;
 import mtapitest.enums.MTErrorCode;
 import mtapitest.exceptions.MTException;
 
+/***
+ * Reads, parses and serializes an xml document data to a required object
+ * 
+ * @author shinumathew
+ *
+ */
 public class XMLDocumentParser {
 
 	private Document document;

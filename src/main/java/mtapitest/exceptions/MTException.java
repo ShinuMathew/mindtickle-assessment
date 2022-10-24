@@ -1,5 +1,11 @@
 package mtapitest.exceptions;
 
+/***
+ * Base exception class for all framework specific failures
+ * 
+ * @author shinumathew
+ *
+ */
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

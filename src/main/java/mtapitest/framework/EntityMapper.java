@@ -10,6 +10,12 @@ import mtapitest.enums.MTErrorCode;
 import mtapitest.exceptions.MTException;
 import mtapitest.objects.MTBaseObject;
 
+/***
+ * Serializes and Deserializes the payloads to and from a MTBaseObject type
+ * 
+ * @author shinumathew
+ *
+ */
 public class EntityMapper {
 
 	public Logger logger = LoggerFactory.getLogger(EntityMapper.class);

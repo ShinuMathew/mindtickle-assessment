@@ -1,5 +1,11 @@
 package mtapitest.enums;
 
+/***
+ * Contains all framework specific error messages
+ * 
+ * @author shinumathew
+ *
+ */
 public enum MTErrorCode {
 
 	PAYLOAD_SERIALIZATION_FAILED("Unable to serialise the given class to json"),

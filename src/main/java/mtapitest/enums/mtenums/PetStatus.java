@@ -1,5 +1,11 @@
 package mtapitest.enums.mtenums;
 
+/***
+ * Pet statuses, valid and invalid
+ * 
+ * @author shinumathew
+ *
+ */
 public enum PetStatus {
 
 	AVAILABLE("available"), PENDING("pending"), SOLD("sold"), INVALID("invalid");

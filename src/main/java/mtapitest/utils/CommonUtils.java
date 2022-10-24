@@ -5,6 +5,13 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/***
+ * Provides common utility methods to be consumed by the helper and manager
+ * class
+ * 
+ * @author shinumathew
+ *
+ */
 public class CommonUtils {
 
 	private static final Logger log = LoggerFactory.getLogger(CommonUtils.class);

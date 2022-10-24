@@ -77,16 +77,23 @@ public class ConfigManager extends MTTestFramework {
 	}
 
 
+	/***
+	 * 
+	 * @param serviceConfigs
+	 * @param service
+	 * @return Configuration for a specific service
+	 * @throws Exception
+	 */
 	public ServiceConfig getServiceConfig(List<ServiceConfig> serviceConfigs, MTService service) throws Exception {
 		return serviceConfigs.stream().filter(config -> config.getName().equals(service)).collect(Collectors.toList())
 				.get(0);
 	}
 	
 	/***
-	 * 
+	 * Provides the required configuration for a given endpoint
 	 * @param serviceConfig
 	 * @param endpoint
-	 * @return
+	 * @return Configuration for an endpoint 
 	 * @throws Exception
 	 */
 	public Endpoint getServiceEndpoint(ServiceConfig serviceConfig, MTServiceEndpoint endpoint) throws Exception {

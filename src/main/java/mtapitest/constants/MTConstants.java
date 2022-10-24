@@ -1,5 +1,11 @@
 package mtapitest.constants;
 
+/***
+ * Stores all framework constant values
+ * 
+ * @author shinumathew
+ *
+ */
 public class MTConstants {
 	
 	// Paths

@@ -48,7 +48,8 @@
 * The request contexts are maintained in the config.xml file. `ConfigManager` is responsible for the providing the configs to the service class and test helpers.
 * `Allure reports` are generated for each test run and it provides a detailed html report.
 * `UnitTests` are maintained in a separate suite and the suite is triggered on every commit using `git pre-commit hook`
-* Code coverage report is generated using `JaCoCo plugin`
+* Unit tests, validates the framework's managers, dataproviders and utility classes which are vulnerable to changes and could lead to failures. The pre-commit hook prevents user from committing the code changes if there are unit test failures.
+* Code coverage report is generated using `JaCoCo plugin`.
 
 ## Test case files :
 * `src/test/java/mtapitest/tests/user/UserHappyPathTests.java` contains all happy path smoke tests for user endpoint.

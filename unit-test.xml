@@ -7,6 +7,7 @@
 			<class name="mtapitest.unittests.ConfigTest" />			
 			<class name="mtapitest.unittests.DataProviderTest" />			
 			<class name="mtapitest.unittests.UtilsTest" />			
+			<class name="mtapitest.unittests.DataDrivenManagerTest" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

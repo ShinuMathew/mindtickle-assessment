@@ -20,14 +20,18 @@ public class DataProviderTest {
 	
 	@Test
 	private void getRandomUsers() {
-		User user = dp.generateRandomUser();
-		Assert.assertNotNull(user);
+		User user1 = dp.generateRandomUser();
+		Assert.assertNotNull(user1);
+		User user2 = dp.generateRandomUser();
+		Assert.assertNotEquals(user1.getEmail(), user2.getEmail());
 	}
 	
 	@Test
 	private void generateRandomPet() {
-		Pet pet = dp.generateRandomPet(PetStatus.AVAILABLE);
-		Assert.assertNotNull(pet);
+		Pet pet1 = dp.generateRandomPet(PetStatus.AVAILABLE);
+		Assert.assertNotNull(pet1);
+		Pet pet2 = dp.generateRandomPet(PetStatus.AVAILABLE);
+		Assert.assertNotEquals(pet1.getName(), pet2.getName());
 	}
 
 }

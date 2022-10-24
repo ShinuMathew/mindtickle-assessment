@@ -18,14 +18,17 @@ public class UtilsTest {
 
 	@Test
 	private void generateRandomEmail() {
-		String email = this.commonUtils.generateRandomEmail();
-		Assert.assertTrue(!StringUtils.isEmpty(email));
+		String email1 = this.commonUtils.generateRandomEmail();
+		Assert.assertTrue(!StringUtils.isEmpty(email1));
+		String email2 = this.commonUtils.generateRandomEmail();
+		Assert.assertNotEquals(email1, email2);
 	}
 
 	@Test
 	private void generateRandomId() {
-		int id = this.commonUtils.generateRandomId(3);
-		System.out.println(id);
-		Assert.assertTrue(id > 1000);
+		int id1 = this.commonUtils.generateRandomId(3);		
+		Assert.assertTrue(id1 > 1000);
+		int id2 = this.commonUtils.generateRandomId(3);
+		Assert.assertNotEquals(id1, id2);
 	}
 }

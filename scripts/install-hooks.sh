@@ -2,7 +2,7 @@
 
 GIT_DIR=$(git rev-parse --git-dir)
 
-echo "Installing hooks..."
+echo "Installing pre commit hooks..."
 
 cp scripts/pre-commit.sh $GIT_DIR/hooks/pre-commit
 chmod +x $GIT_DIR/hooks/pre-commit

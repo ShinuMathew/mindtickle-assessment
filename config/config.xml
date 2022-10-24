@@ -17,6 +17,10 @@
 					<path>/v2/user/%s</path>
 					<headers default="true"></headers>
 				</updateuser>
+				<deleteuser method="DELETE">
+					<path>/v2/user/%s</path>
+					<headers default="true"></headers>
+				</deleteuser>
 			</endpoint>
 		</user>
 		<pet>

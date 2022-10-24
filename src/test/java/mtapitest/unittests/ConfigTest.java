@@ -14,6 +14,10 @@ import mtapitest.managers.ConfigManager;
 import mtapitest.objects.config.Endpoint;
 import mtapitest.objects.config.ServiceConfig;
 
+
+/***
+ * @author shinumathew User - Negative scenarios are covered here
+ */
 public class ConfigTest {
 
 	private ConfigManager configManager;

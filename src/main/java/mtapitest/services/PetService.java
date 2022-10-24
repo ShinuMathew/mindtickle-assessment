@@ -23,7 +23,7 @@ public class PetService extends Service {
 	public PetService() throws Exception {
 		this.serviceConfig = this.configHelper.getServiceConfig(this.serviceConfigs, MTService.PET);
 		setDefaultRequestContext();
-		log.info("User service initialised");
+		log.info("Pet service initialised");
 	}
 	
 	@Override

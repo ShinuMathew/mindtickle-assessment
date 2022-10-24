@@ -10,11 +10,14 @@ import mtapitest.enums.mtenums.PetStatus;
 import mtapitest.framework.BaseTest;
 
 /***
- * @author shinumathew User - Happy path test cases
+ * @author shinumathew User - Negative test scenarios are covered here
  */
 @Feature("Pet - Negative tests")
 public class PetNegativeTests extends BaseTest {
 	
+	/***
+	 * Creates pet with invalid status and validates
+	 */
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Create pet with invalid schema")
 	@Story("Test Pet CRUD APIs - Negative")
@@ -23,6 +26,9 @@ public class PetNegativeTests extends BaseTest {
 		this.commonTestHelper.createAndValidateInvalidPet();
 	}
 	
+	/***
+	 * Tries to get pet with invalid status and validates
+	 */
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Fetch pet with invalid status")
 	@Story("Test Pet CRUD APIs - Negative")

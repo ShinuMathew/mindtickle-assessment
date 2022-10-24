@@ -20,7 +20,7 @@ public class UserService extends Service {
 
 	private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
-	public UserService() throws Exception {		
+	public UserService() throws Exception {
 		this.serviceConfig = super.configHelper.getServiceConfig(this.serviceConfigs, MTService.USER);
 		setDefaultRequestContext();
 		log.info("User service initialised");
@@ -57,6 +57,15 @@ public class UserService extends Service {
 		RequestSpecification request = reqBuilder.builder().setBaseURI(this.protocol + "://" + this.host)
 				.setEndpoint(String.format(endpoint.getPath(), username)).setHeaders(defaultHeaders)
 				.setBody(requestBody).setMethod(endpoint.getMethod()).buildRequest();
+		return reqBuilder.sendRequest(request);
+	}
+
+	public Response deleteUser(String username) throws Exception {
+		log.info("Calling updateUser...");
+		Endpoint endpoint = this.configHelper.getServiceEndpoint(this.serviceConfig, MTServiceEndpoint.DELETEUSER);
+		RequestSpecification request = reqBuilder.builder().setBaseURI(this.protocol + "://" + this.host)
+				.setEndpoint(String.format(endpoint.getPath(), username)).setHeaders(defaultHeaders)
+				.setMethod(endpoint.getMethod()).buildRequest();
 		return reqBuilder.sendRequest(request);
 	}
 }

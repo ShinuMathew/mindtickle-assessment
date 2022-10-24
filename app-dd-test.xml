@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite" parallel="classes" thread-count="2">
+	<listeners>
+		<listener
+			class-name="mtapitest.listeners.TestTransformerListener"></listener>
+	</listeners>
+	<test name="Test">
+		<classes>
+			<!-- USER DATADRIVEN SCENARIOS -->			
+			<class name="mtapitest.tests.user.UserDataDrivenTest" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

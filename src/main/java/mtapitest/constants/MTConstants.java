@@ -4,6 +4,7 @@ public class MTConstants {
 	
 	// Paths
 	public static final String CONFIG_PATH = "config/config.xml";
+	public static final String TEST_DATA_PATH = "src/main/resources/test-data";
 	
 	// Constants
 	public static final String CONFIG_SERVICE = "service";

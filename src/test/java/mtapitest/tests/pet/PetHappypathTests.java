@@ -12,11 +12,14 @@ import mtapitest.framework.BaseTest;
 import mtapitest.objects.request.Pet;
 
 /***
- * @author shinumathew Pet - Happy path test cases
+ * @author shinumathew Pet - Happy path scenarios are covered here
  */
 @Feature("Pets - Happy path tests")
 public class PetHappypathTests extends BaseTest {
 
+	/***
+	 * Creates pet details and validates
+	 */
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Create a pet and validate details")
 	@Story("Test Pet CRUD APIs - Happy path")
@@ -26,6 +29,9 @@ public class PetHappypathTests extends BaseTest {
 		this.commonTestHelper.verifyCreatedPet(pet);
 	}
 
+	/***
+	 * Updates pet status as PENDING and validates
+	 */
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Update pet as PENDING and validate details")
 	@Story("Test Pet CRUD APIs - Happy path")
@@ -34,6 +40,9 @@ public class PetHappypathTests extends BaseTest {
 		this.commonTestHelper.updateAndVerifyPet(PetStatus.PENDING);
 	}
 
+	/***
+	 * Updates pet status as SOLD and validates
+	 */
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Update pet as SOLD and validate details")
 	@Story("Test Pet CRUD APIs - Happy path")

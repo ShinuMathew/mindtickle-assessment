@@ -2,6 +2,7 @@ package mtapitest.tests.user;
 
 import java.util.List;
 
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -13,13 +14,16 @@ import mtapitest.framework.BaseTest;
 import mtapitest.objects.request.User;
 
 /***
- * @author shinumathew User - Happy path test cases
+ * @author shinumathew User - Happy path scenarios are covered here
  */
 @Feature("Users - Happy path tests")
 public class UserHappyPathTests extends BaseTest {
-	
+
 	private User user;
 
+	/***
+	 * Creates a single user and validates it.
+	 */
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Create single user and validate")
 	@Story("Test Users CRUD APIs - Happy path")
@@ -29,6 +33,10 @@ public class UserHappyPathTests extends BaseTest {
 		this.commonTestHelper.verifyCreatedUser(this.user);
 	}
 
+	/***
+	 * Gets an existing user from cache or creates a random user, updates it and
+	 * validates it.
+	 */
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Update user and validate")
 	@Story("Test Users CRUD APIs - Happy path")
@@ -38,6 +46,9 @@ public class UserHappyPathTests extends BaseTest {
 		this.commonTestHelper.verifyCreatedUser(newUserData);
 	}
 
+	/***
+	 * Creates multiple users and validates each of them.
+	 */
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Create multiple user and validate")
 	@Story("Test Users CRUD APIs - Happy path")
@@ -45,5 +56,13 @@ public class UserHappyPathTests extends BaseTest {
 	public void createAndValidateMultipleUser() {
 		List<User> users = this.commonTestHelper.createAndValidateMultipleUser(3);
 		this.commonTestHelper.verifyCreatedUsers(users);
+	}
+
+	/***
+	 * Deletes users created during the test.
+	 */
+	@AfterTest
+	public void tearDownUserSetups() {
+		this.commonTestHelper.deleteUsersFromCache();
 	}
 }

@@ -9,7 +9,7 @@ package mtapitest.enums.mtenums;
 public enum MTServiceEndpoint {
 
 	// USER SERVICE
-	CREATEUSER("createuser"), GETUSER("getuser"), UPDATEUSER("updateuser"),
+	CREATEUSER("createuser"), GETUSER("getuser"), UPDATEUSER("updateuser"), DELETEUSER("deleteuser"),
 
 	// PET SERVICE
 	CREATEPET("createpet"), GETPETBYSTATUS("getpetbystatus"), UPDATEPET("updatepet");

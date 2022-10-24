@@ -2,9 +2,7 @@ package mtapitest.tests.helper;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.ObjectUtils;
@@ -58,7 +56,7 @@ public class CommonTestHelper extends MTTestFramework implements ITestHelper {
 		this.petService = new PetService();
 	}
 
-	public List<User>getUserList() {
+	public List<User> getUserList() {
 		List<User> users = new ArrayList<User>();
 		try {
 			log.info("Fetching users from excel for data driven tests");
@@ -230,8 +228,8 @@ public class CommonTestHelper extends MTTestFramework implements ITestHelper {
 	public void deleteUsersFromCache() {
 		try {
 			ArrayList<String> tempUsers = (ArrayList<String>) InMemoryCache.get(MTConstants.TEMPUSER);
-			if(!ObjectUtils.isEmpty(tempUsers))
-				tempUsers.forEach(this::deleteUser);			
+			if (!ObjectUtils.isEmpty(tempUsers))
+				tempUsers.forEach(this::deleteUser);
 		} catch (Exception e) {
 			assertionManager.assertExceptionFailures(e);
 		}
@@ -382,5 +380,12 @@ public class CommonTestHelper extends MTTestFramework implements ITestHelper {
 			assertionManager.assertExceptionFailures(e);
 		}
 		return pet;
+	}
+
+	@Override
+	public void clearCache() {
+		if(!InMemoryCache.keys().isEmpty()) {
+			InMemoryCache.flushAll();
+		}
 	}
 }

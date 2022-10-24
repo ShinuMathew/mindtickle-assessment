@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -38,9 +38,9 @@ public class BaseTest extends MTTestFramework {
 
 	}
 
-	@AfterTest
+	@AfterClass
 	public void tearDown() throws Exception {
-		InMemoryCache.flushAll();
+		this.commonTestHelper.clearCache();
 	}
 
 }

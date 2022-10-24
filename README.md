@@ -13,7 +13,11 @@
 * Install allure node package using npm - `sudo npm i -g allure-commandline`.
 * Run the build.sh which will clean install all dependencies and also install the `pre-commit hooks` for unit tests
 * To run test ` mvn test -DsuiteXmlFile=service-test.xml`
-* The code coverage for 
+* Allure reports will be generated for each run. To fetch html report, run `allure serve allure-results`
+![Allure report sample](assets/allure-reprt-sample.png "Allure report sample")
+* The code coverage for tests can be fetched from `target/site/jacoco/index.html`
+![Code coverage report sample](assets/code-coverage-sample.png "Code coverage report")
+
 
 ## FRAMEWORK SPECIFICATION
 

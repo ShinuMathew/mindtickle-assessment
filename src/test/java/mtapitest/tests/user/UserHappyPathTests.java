@@ -2,7 +2,7 @@ package mtapitest.tests.user;
 
 import java.util.List;
 
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -61,7 +61,7 @@ public class UserHappyPathTests extends BaseTest {
 	/***
 	 * Deletes users created during the test.
 	 */
-	@AfterTest
+	@AfterClass
 	public void tearDownUserSetups() {
 		this.commonTestHelper.deleteUsersFromCache();
 	}

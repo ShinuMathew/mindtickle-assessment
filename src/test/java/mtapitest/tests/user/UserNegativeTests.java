@@ -1,7 +1,8 @@
 package mtapitest.tests.user;
 
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
+
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
@@ -48,7 +49,10 @@ public class UserNegativeTests extends BaseTest {
 		this.commonTestHelper.updateAndVerifyInvalidUser();
 	}
 
-	@AfterTest
+	/***
+	 * Deletes users created during the test.
+	 */
+	@AfterClass
 	public void tearDownUserSetups() {
 		this.commonTestHelper.deleteUsersFromCache();
 	}
